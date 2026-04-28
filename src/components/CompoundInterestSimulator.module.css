@@ -1,0 +1,973 @@
+.simulatorContainer {
+  --ramify-font-normal: var(
+    --font--normal,
+    "PP Fragment Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif
+  );
+  --ramify-font-heading: var(
+    --font--heading,
+    "PP Fragment Serif Regular",
+    "PP Fragment Serif",
+    "PT Serif",
+    Georgia,
+    serif
+  );
+  --ramify-text-primary: var(--text--primary, #1e1e1e);
+  --ramify-text-secondary: var(--text--secondary, #726f6b);
+  --ramify-gold-700: var(--color--gold700, #b4843b);
+  --ramify-gold-500: var(--color--gold500, #efc27e);
+  --ramify-gold-300: var(--color--gold300, #f5e5ce);
+  --ramify-gold-200: var(--color--gold200, #f9f3eb);
+  --ramify-grey-000: var(--color--grey000, #ffffff);
+  --ramify-grey-100: var(--color--grey100, #f8f7f7);
+  --ramify-grey-200: var(--color--grey200, #ecebea);
+  --ramify-grey-300: var(--color--grey300, #d9d6d2);
+  --ramify-grey-400: var(--color--grey400, #bdb9b3);
+  --ramify-grey-500: var(--color--grey500, #989591);
+  --ramify-grey-600: var(--color--grey600, #726f6b);
+  --ramify-grey-700: var(--color--grey700, #585450);
+  --ramify-grey-800: var(--color--grey800, #2f2e2c);
+  --ramify-grey-900: var(--color--grey900, #1e1e1e);
+  --ramify-green-200: var(--color--green200, #e2f0cf);
+  --ramify-green-700: var(--color--green700, #6a7851);
+  color: var(--ramify-text-primary);
+  font-family: var(--ramify-font-normal);
+  font-weight: 300;
+  width: 100%;
+}
+
+.simulatorContainer button,
+.simulatorContainer input {
+  font: inherit;
+}
+
+.shell {
+  background: var(--ramify-grey-900);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  min-height: 720px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.introPanel {
+  background:
+    linear-gradient(180deg, rgba(239, 194, 126, 0.14), rgba(239, 194, 126, 0) 40%),
+    #171717;
+  color: var(--ramify-grey-100);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: space-between;
+  padding: 44px;
+}
+
+.eyebrow,
+.progressLabel,
+.progressStep,
+.resultBadge,
+.resultProductLabel,
+.detailTitle {
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--ramify-gold-500);
+  font-size: 0.82rem;
+  font-weight: 400;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--ramify-grey-000);
+  font-family: var(--ramify-font-heading);
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 0;
+  max-width: 9.5em;
+}
+
+.subtitle {
+  color: var(--ramify-grey-300);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 22px 0 0;
+  max-width: 34rem;
+}
+
+.productRail {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.productPill {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px;
+}
+
+.productPillIcon {
+  flex: 0 0 auto;
+  height: 18px;
+  width: 18px;
+}
+
+.productPill span {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.productPill_simple {
+  background: rgba(248, 247, 247, 0.08);
+}
+
+.productPill_international {
+  background: rgba(226, 240, 207, 0.08);
+}
+
+.productPill_secure {
+  background: rgba(245, 229, 206, 0.1);
+}
+
+.productPill_premium {
+  background: rgba(239, 194, 126, 0.14);
+}
+
+.introFacts {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  gap: 18px;
+  padding-top: 26px;
+}
+
+.introFact {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.introFactIcon {
+  color: var(--ramify-gold-500);
+  height: 22px;
+  width: 22px;
+}
+
+.introFact strong,
+.introFact span {
+  display: block;
+}
+
+.introFact strong {
+  color: var(--ramify-grey-000);
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.introFact span {
+  color: var(--ramify-grey-300);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.sourceNote {
+  color: var(--ramify-grey-400);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.quizPanel {
+  background:
+    linear-gradient(180deg, rgba(245, 229, 206, 0.05), rgba(245, 229, 206, 0) 28%),
+    var(--ramify-grey-900);
+  color: var(--ramify-grey-100);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 38px;
+}
+
+.progressHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.progressLabel,
+.progressStep {
+  color: var(--ramify-grey-400);
+  font-size: 0.82rem;
+}
+
+.progressStep {
+  color: var(--ramify-gold-500);
+  font-weight: 400;
+}
+
+.progressTrack {
+  background: var(--ramify-grey-800);
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.progressFill {
+  background: var(--ramify-gold-500);
+  display: block;
+  height: 100%;
+  transition: width 240ms ease;
+}
+
+.questionStage,
+.resultStage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.questionHeader {
+  margin: 50px 0 28px;
+}
+
+.questionHelper {
+  color: var(--ramify-gold-500);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 0 0 14px;
+  max-width: 44rem;
+}
+
+.questionTitle,
+.resultTitle {
+  color: var(--ramify-grey-000);
+  font-family: var(--ramify-font-heading);
+  font-size: clamp(1.85rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.answerGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.answerButton {
+  align-items: flex-start;
+  background: var(--ramify-grey-800);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--ramify-grey-000);
+  cursor: pointer;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  min-height: 86px;
+  padding: 18px;
+  text-align: left;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+  width: 100%;
+}
+
+.answerButton:hover {
+  background: var(--ramify-grey-700);
+  border-color: var(--ramify-gold-500);
+  transform: translateY(-1px);
+}
+
+.answerButton:focus-visible,
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.contactModalCloseButton:focus-visible,
+.contactAmountButton:focus-visible,
+.contactModalSecondaryAction:focus-visible {
+  outline: 2px solid var(--ramify-gold-500);
+  outline-offset: 3px;
+}
+
+.answerButtonSelected {
+  background: var(--ramify-gold-500);
+  border-color: var(--ramify-gold-500);
+  color: var(--ramify-grey-900);
+}
+
+.answerCheck {
+  align-items: center;
+  border: 1px solid var(--ramify-grey-500);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 22px;
+  justify-content: center;
+  margin-top: 2px;
+  width: 22px;
+}
+
+.answerButtonSelected .answerCheck {
+  background: var(--ramify-grey-900);
+  border-color: var(--ramify-grey-900);
+  color: var(--ramify-grey-000);
+}
+
+.answerCheckIcon {
+  height: 14px;
+  width: 14px;
+}
+
+.answerText {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.answerText strong {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.answerText span {
+  color: var(--ramify-grey-300);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.answerButtonSelected .answerText span {
+  color: var(--ramify-grey-800);
+}
+
+.navigationRow,
+.resultActions,
+.contactModalFooter,
+.contactCalendlyLoaderActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.navigationRow {
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.primaryButton,
+.secondaryButton,
+.contactCalendlyLoaderPrimaryLink,
+.contactModalSecondaryAction,
+.contactModalFallbackLink {
+  align-items: center;
+  border-radius: 4px;
+  display: inline-flex;
+  gap: 9px;
+  justify-content: center;
+  min-height: 46px;
+  padding: 13px 18px;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background: var(--ramify-gold-500);
+  border: 1px solid var(--ramify-gold-500);
+  color: var(--ramify-grey-900);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.primaryButton::after {
+  background: var(--ramify-grey-000);
+  border-radius: 999px;
+  content: "";
+  filter: blur(28px);
+  height: 48px;
+  opacity: 0.45;
+  position: absolute;
+  right: -18px;
+  top: -18px;
+  width: 64px;
+}
+
+.secondaryButton,
+.contactModalSecondaryAction,
+.contactModalFallbackLink {
+  background: var(--ramify-grey-800);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--ramify-grey-100);
+  cursor: pointer;
+}
+
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.buttonIcon {
+  flex: 0 0 auto;
+  height: 16px;
+  position: relative;
+  width: 16px;
+  z-index: 1;
+}
+
+.resultStage {
+  gap: 24px;
+  padding-top: 34px;
+}
+
+.resultHeader {
+  display: grid;
+  gap: 12px;
+}
+
+.resultBadge {
+  align-self: start;
+  background: rgba(239, 194, 126, 0.12);
+  border: 1px solid rgba(239, 194, 126, 0.28);
+  border-radius: 999px;
+  color: var(--ramify-gold-500);
+  display: inline-flex;
+  font-size: 0.78rem;
+  padding: 7px 10px;
+  width: fit-content;
+}
+
+.resultLead {
+  color: var(--ramify-grey-300);
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 46rem;
+}
+
+.resultHero {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.95fr);
+  overflow: hidden;
+}
+
+.resultProductCard {
+  align-items: flex-start;
+  color: var(--ramify-grey-900);
+  display: flex;
+  gap: 18px;
+  min-height: 176px;
+  padding: 24px;
+}
+
+.resultProductCard h4 {
+  font-family: var(--ramify-font-heading);
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 7px 0 0;
+}
+
+.resultProductLabel {
+  color: var(--ramify-grey-700);
+  font-size: 0.86rem;
+}
+
+.resultProductCard_simple {
+  background: var(--ramify-grey-100);
+}
+
+.resultProductCard_international {
+  background: var(--ramify-green-200);
+}
+
+.resultProductCard_secure {
+  background: var(--ramify-gold-200);
+}
+
+.resultProductCard_premium {
+  background: var(--ramify-gold-500);
+}
+
+.resultIcon {
+  flex: 0 0 auto;
+  height: 30px;
+  width: 30px;
+}
+
+.resultFacts {
+  background: #171717;
+  color: var(--ramify-grey-100);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.resultFact {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 5px;
+  padding: 16px 20px;
+}
+
+.resultFact:last-child {
+  border-bottom: 0;
+}
+
+.resultFact span {
+  color: var(--ramify-grey-400);
+  font-size: 0.78rem;
+}
+
+.resultFact strong {
+  color: var(--ramify-grey-000);
+  font-weight: 400;
+}
+
+.resultColumns {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.detailTitle {
+  color: var(--ramify-grey-000);
+  font-size: 0.92rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.checkList,
+.watchList {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkList li,
+.watchList li {
+  align-items: flex-start;
+  color: var(--ramify-grey-300);
+  display: grid;
+  font-size: 0.92rem;
+  gap: 9px;
+  grid-template-columns: 18px minmax(0, 1fr);
+  line-height: 1.45;
+}
+
+.listIcon {
+  color: var(--ramify-gold-700);
+  height: 16px;
+  margin-top: 2px;
+  width: 16px;
+}
+
+.scoreBoard,
+.signalPanel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.scoreRow {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(130px, 0.52fr) minmax(120px, 1fr) 36px;
+  min-height: 44px;
+}
+
+.scoreLabel {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.scoreLabel span {
+  color: var(--ramify-grey-100);
+  font-size: 0.92rem;
+}
+
+.scoreLabel small {
+  color: var(--ramify-grey-400);
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.scoreTrack {
+  background: var(--ramify-grey-800);
+  border-radius: 999px;
+  height: 7px;
+  overflow: hidden;
+}
+
+.scoreFill {
+  display: block;
+  height: 100%;
+}
+
+.scoreFill_simple {
+  background: var(--ramify-grey-700);
+}
+
+.scoreFill_international {
+  background: var(--ramify-green-700);
+}
+
+.scoreFill_secure {
+  background: var(--ramify-gold-700);
+}
+
+.scoreFill_premium {
+  background: var(--ramify-gold-500);
+}
+
+.scoreRow strong {
+  color: var(--ramify-grey-100);
+  font-weight: 400;
+  text-align: right;
+}
+
+.signalGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.signalItem {
+  background: var(--ramify-grey-800);
+  border-radius: 6px;
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+}
+
+.signalItem span {
+  color: var(--ramify-grey-400);
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.signalItem strong {
+  color: var(--ramify-grey-100);
+  font-size: 0.86rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.resultFooter {
+  align-items: flex-start;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.resultFooter p {
+  color: var(--ramify-grey-400);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 34rem;
+}
+
+.contactModalOverlay {
+  align-items: center;
+  background: rgba(23, 23, 23, 0.66);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 20px;
+  position: fixed;
+  z-index: 9999;
+}
+
+.contactModalDialog {
+  background: var(--ramify-grey-900);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  color: var(--ramify-grey-100);
+  max-height: min(92vh, 860px);
+  max-width: 920px;
+  overflow: hidden;
+  width: min(100%, 920px);
+}
+
+.contactModalHeader {
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 26px 28px;
+}
+
+.contactModalHeaderContent {
+  display: grid;
+  gap: 10px;
+}
+
+.contactModalProgress {
+  display: flex;
+  gap: 8px;
+}
+
+.contactModalProgressStep {
+  background: var(--ramify-grey-700);
+  border-radius: 999px;
+  display: block;
+  height: 5px;
+  width: 42px;
+}
+
+.contactModalProgressStepActive {
+  background: var(--ramify-gold-500);
+}
+
+.contactModalTitle {
+  font-family: var(--ramify-font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.contactModalLead {
+  color: var(--ramify-grey-300);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 34rem;
+}
+
+.contactModalCloseButton {
+  align-items: center;
+  background: var(--ramify-grey-800);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: var(--ramify-grey-100);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 28px;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  width: 40px;
+}
+
+.contactModalBody {
+  max-height: calc(92vh - 150px);
+  overflow: auto;
+  padding: 24px 28px 28px;
+}
+
+.contactAmountList {
+  display: grid;
+  gap: 12px;
+}
+
+.contactAmountButton {
+  align-items: center;
+  background: var(--ramify-grey-800);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--ramify-grey-100);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 18px;
+  text-align: left;
+  transition: border-color 180ms ease, transform 180ms ease;
+  width: 100%;
+}
+
+.contactAmountButton:hover {
+  border-color: var(--ramify-gold-500);
+  transform: translateY(-1px);
+}
+
+.contactAmountButtonLabel {
+  font-weight: 400;
+}
+
+.contactAmountButtonArrow {
+  color: var(--ramify-gold-700);
+  font-size: 1.2rem;
+}
+
+.contactCalendlyStage {
+  background: var(--ramify-grey-800);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  min-height: 680px;
+  overflow: hidden;
+  position: relative;
+}
+
+.contactCalendlyContainer {
+  min-height: 700px;
+}
+
+.contactCalendlyLoader {
+  align-items: center;
+  background: rgba(30, 30, 30, 0.94);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  inset: 0;
+  justify-content: center;
+  padding: 28px;
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+}
+
+.contactCalendlyLoaderError {
+  background: var(--ramify-grey-800);
+}
+
+.contactCalendlyLoaderSpinner {
+  animation: spin 900ms linear infinite;
+  border: 2px solid var(--ramify-grey-300);
+  border-top-color: var(--ramify-gold-700);
+  border-radius: 999px;
+  height: 34px;
+  width: 34px;
+}
+
+.contactCalendlyLoaderTitle {
+  color: var(--ramify-grey-000);
+  font-weight: 400;
+  margin: 0;
+}
+
+.contactCalendlyLoaderText,
+.contactCalendlyLoaderHint {
+  color: var(--ramify-grey-300);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 28rem;
+}
+
+.contactCalendlyLoaderPrimaryLink {
+  background: var(--ramify-gold-500);
+  border: 1px solid var(--ramify-gold-500);
+  color: var(--ramify-grey-900);
+}
+
+.contactModalFooter {
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.contactModalFallbackLink {
+  color: var(--ramify-grey-300);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1020px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .introPanel {
+    gap: 28px;
+    padding: 34px;
+  }
+
+  .quizPanel {
+    padding: 30px;
+  }
+
+  .title {
+    max-width: 14em;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .introPanel,
+  .quizPanel {
+    padding: 24px 18px;
+  }
+
+  .productRail,
+  .resultColumns,
+  .signalGrid,
+  .resultHero {
+    grid-template-columns: 1fr;
+  }
+
+  .questionHeader {
+    margin: 34px 0 22px;
+  }
+
+  .answerButton {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .scoreRow {
+    gap: 8px;
+    grid-template-columns: minmax(96px, 0.72fr) minmax(80px, 1fr) 28px;
+  }
+
+  .resultFooter {
+    display: grid;
+  }
+
+  .resultActions,
+  .navigationRow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .contactModalOverlay {
+    padding: 0;
+  }
+
+  .contactModalDialog {
+    border-radius: 0;
+    max-height: 100vh;
+    min-height: 100vh;
+  }
+
+  .contactModalHeader,
+  .contactModalBody {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
