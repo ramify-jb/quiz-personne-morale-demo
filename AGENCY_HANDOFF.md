@@ -73,12 +73,10 @@ Paramètres recommandés :
 
 Le CTA final ouvre le même flow Calendly que le simulateur intérêts composés, mais la première question est adaptée au ticket personne morale :
 
-- Entre 100 000 € et 250 000 €
-- Entre 250 000 € et 500 000 €
-- Entre 500 000 € et 1 000 000 €
+- Entre 100 000 € et 1 000 000 €
 - Entre 1 000 000 € et 5 000 000 €
 - Plus de 5 000 000 €
-- Je ne sais pas encore
+- Je ne sais pas
 
 Seuils produit à respecter dans les contenus :
 

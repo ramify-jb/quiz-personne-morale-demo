@@ -1,7 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import * as styles from "./CompoundInterestSimulator.module.css";
 
-type AdvisorAmountBucket = "100-250K" | "250-500K" | "500K-1M" | "1-5M" | "5M+" | "Unsure";
+type AdvisorAmountBucket = "100K-1M" | "1-5M" | "5M+" | "Unsure";
 
 interface AdvisorAmountOption {
   value: AdvisorAmountBucket;
@@ -121,26 +121,8 @@ function ensureCalendlyScriptLoaded(): Promise<void> {
 
 const ADVISOR_AMOUNT_OPTIONS: AdvisorAmountOption[] = [
   {
-    value: "100-250K",
-    label: "Entre 100 000 € et 250 000 €",
-    heading: "Échangez avec un conseiller dédié Ramify",
-    standardCalendlyUrl:
-      "https://calendly.com/d/hxd-ppp-c78/echange-avec-un-conseiller-dedie-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
-    seaCalendlyUrl:
-      "https://calendly.com/d/hkc-nc9-9j3/echange-avec-nos-conseillers-dedies-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
-  },
-  {
-    value: "250-500K",
-    label: "Entre 250 000 € et 500 000 €",
-    heading: "Échangez avec un conseiller dédié Ramify",
-    standardCalendlyUrl:
-      "https://calendly.com/d/hxd-ppp-c78/echange-avec-un-conseiller-dedie-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
-    seaCalendlyUrl:
-      "https://calendly.com/d/hkc-nc9-9j3/echange-avec-nos-conseillers-dedies-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
-  },
-  {
-    value: "500K-1M",
-    label: "Entre 500 000 € et 1 000 000 €",
+    value: "100K-1M",
+    label: "Entre 100 000 € et 1 000 000 €",
     heading: "Échangez avec un conseiller dédié Ramify",
     standardCalendlyUrl:
       "https://calendly.com/d/hxd-ppp-c78/echange-avec-un-conseiller-dedie-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
@@ -167,7 +149,7 @@ const ADVISOR_AMOUNT_OPTIONS: AdvisorAmountOption[] = [
   },
   {
     value: "Unsure",
-    label: "Je ne sais pas encore",
+    label: "Je ne sais pas",
     heading: "Échangez avec un conseiller dédié Ramify",
     standardCalendlyUrl:
       "https://calendly.com/d/hxd-ppp-c78/echange-avec-un-conseiller-dedie-ramify?hide_event_type_details=1&hide_gdpr_banner=1&utm_source=website",
