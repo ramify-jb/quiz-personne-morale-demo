@@ -43,6 +43,12 @@ const CONTACT_PAGE_URL = "https://www.ramify.fr/contact";
 const CALENDLY_SLOW_LOAD_DELAY_MS = 3000;
 const CALENDLY_SCRIPT_STATE_ATTRIBUTE = "data-ramify-calendly-state";
 
+function parseSessionFlag(value: string | null) {
+  if (!value) return false;
+
+  return ["1", "true", "yes"].includes(value.trim().toLowerCase());
+}
+
 function isCalendlyMessage(event: MessageEvent<unknown>): event is MessageEvent<{ event: string }> {
   if (typeof event.origin !== "string") {
     return false;
@@ -206,7 +212,7 @@ export function AdvisorContactModal({ isOpen, onClose }: AdvisorContactModalProp
     }
 
     try {
-      setIsSeaVisitor(Boolean(window.sessionStorage.getItem("fromSEA")));
+      setIsSeaVisitor(parseSessionFlag(window.sessionStorage.getItem("fromSEA")));
     } catch {
       setIsSeaVisitor(false);
     }

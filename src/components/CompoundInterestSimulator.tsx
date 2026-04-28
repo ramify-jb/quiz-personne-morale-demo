@@ -493,7 +493,7 @@ export function PersonneMoraleQuiz({
         <div className={styles.quizPanel}>
           <div className={styles.progressHeader}>
             <span className={styles.progressLabel}>{getProgressLabel(answeredCount)}</span>
-            <span className={styles.progressStep}>Question {currentQuestionIndex + 1}</span>
+            <span className={styles.progressStep}>{isComplete ? "Résultat" : `Question ${currentQuestionIndex + 1}`}</span>
           </div>
           <div className={styles.progressTrack} aria-hidden="true">
             <span className={styles.progressFill} style={{ width: `${(answeredCount / QUIZ_QUESTIONS.length) * 100}%` }} />
