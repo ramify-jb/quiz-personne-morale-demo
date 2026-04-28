@@ -433,10 +433,7 @@ export function PersonneMoraleQuiz({
 
   const handleAnswerSelect = (questionId: QuestionId, answerId: string) => {
     setAnswers((currentAnswers) => ({ ...currentAnswers, [questionId]: answerId }));
-
-    if (currentQuestionIndex < QUIZ_QUESTIONS.length - 1) {
-      setCurrentQuestionIndex((index) => index + 1);
-    }
+    setCurrentQuestionIndex((index) => Math.min(index + 1, QUIZ_QUESTIONS.length - 1));
   };
 
   const handlePrevious = () => {
