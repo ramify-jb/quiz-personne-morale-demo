@@ -8,8 +8,8 @@ Seuils produit Ramify constatés sur la page live :
 
 - Contrat de capitalisation français : à partir de 100 000 €.
 - Contrat de capitalisation luxembourgeois : à partir de 250 000 €.
-- CTO français : à partir de 100 000 €.
-- CTO luxembourgeois : à partir de 500 000 €.
+- Compte-titres français : à partir de 100 000 €.
+- Compte-titres luxembourgeois : à partir de 500 000 €.
 
 Articles dont le H1 contient "personne morale" :
 
@@ -21,7 +21,7 @@ Articles dont le H1 contient "personne morale" :
 
 ## Synthèse appliquée au quiz
 
-### CTO français
+### Compte-titres français
 
 À privilégier quand la société recherche :
 
@@ -36,7 +36,7 @@ Points à rappeler :
 - pas de fonds euros ;
 - moins d'options sophistiquées que les enveloppes luxembourgeoises.
 
-### CTO luxembourgeois
+### Compte-titres luxembourgeois
 
 À privilégier quand la société recherche :
 

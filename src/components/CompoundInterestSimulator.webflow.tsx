@@ -25,12 +25,7 @@ export default declareComponent(WebflowPersonneMoraleQuiz, {
       name: "Description",
       group: "Contenu",
       defaultValue:
-        "Répondez à quelques questions pour comparer CTO français, CTO luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.",
-    }),
-    showSourceNote: props.Boolean({
-      name: "Afficher la note de source",
-      group: "Contenu",
-      defaultValue: true,
+        "Répondez à quelques questions pour comparer compte-titres français, compte-titres luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.",
     }),
     showCallToAction: props.Boolean({
       name: "Afficher le CTA final",

@@ -23,7 +23,6 @@ type ProductIcon = typeof WalletCards;
 interface ProductProfile {
   id: ProductId;
   label: string;
-  shortLabel: string;
   tone: ProductTone;
   icon: ProductIcon;
   headline: string;
@@ -53,7 +52,6 @@ export interface PersonneMoraleQuizProps {
   headline?: string;
   subtitle?: string;
   eyebrow?: string;
-  showSourceNote?: boolean;
   showCallToAction?: boolean;
   callToActionText?: string;
 }
@@ -62,7 +60,6 @@ const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "cto_fr",
     label: "Compte-titres français",
-    shortLabel: "CTO FR",
     tone: "simple",
     icon: WalletCards,
     headline: "Simple, liquide, frais contenus",
@@ -86,7 +83,6 @@ const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "cto_lux",
     label: "Compte-titres luxembourgeois",
-    shortLabel: "CTO Lux",
     tone: "international",
     icon: Globe2,
     headline: "Marchés directs et multi-devises",
@@ -99,7 +95,7 @@ const PRODUCT_PROFILES: ProductProfile[] = [
     ],
     watchouts: [
       "Ne réduit pas l'impôt d'une société française : la fiscalité française reste applicable.",
-      "Frais et formalisme supérieurs à un CTO français.",
+      "Frais et formalisme supérieurs à un compte-titres français.",
     ],
     facts: [
       { label: "Ticket Ramify", value: "500 000 € minimum" },
@@ -110,7 +106,6 @@ const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "cap_fr",
     label: "Contrat de capitalisation français",
-    shortLabel: "Cap. FR",
     tone: "secure",
     icon: ShieldCheck,
     headline: "Fiscalité lissée et poche sécurisée",
@@ -134,7 +129,6 @@ const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "cap_lux",
     label: "Contrat de capitalisation luxembourgeois",
-    shortLabel: "Cap. Lux",
     tone: "premium",
     icon: Landmark,
     headline: "Cadre patrimonial avancé",
@@ -367,7 +361,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
 
 const DEFAULT_HEADLINE = "Quelle enveloppe choisir pour votre personne morale ?";
 const DEFAULT_SUBTITLE =
-  "Répondez à quelques questions pour comparer CTO français, CTO luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.";
+  "Répondez à quelques questions pour comparer compte-titres français, compte-titres luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.";
 const DEFAULT_EYEBROW = "Quiz d'orientation";
 const DEFAULT_CTA = "Échanger avec un conseiller";
 
@@ -411,17 +405,16 @@ function getScorePercent(score: number, topScore: number) {
 
 function buildRecommendationTitle(topProduct: ProductProfile, secondProduct: ProductProfile, topScore: number, secondScore: number) {
   if (topScore - secondScore <= 2) {
-    return `${topProduct.shortLabel} à comparer avec ${secondProduct.shortLabel}`;
+    return `${topProduct.label} à comparer avec ${secondProduct.label}`;
   }
 
-  return `${topProduct.shortLabel} ressort en priorité`;
+  return `${topProduct.label} ressort en priorité`;
 }
 
 export function PersonneMoraleQuiz({
   headline = DEFAULT_HEADLINE,
   subtitle = DEFAULT_SUBTITLE,
   eyebrow = DEFAULT_EYEBROW,
-  showSourceNote = true,
   showCallToAction = true,
   callToActionText = DEFAULT_CTA,
 }: PersonneMoraleQuizProps) {
@@ -476,7 +469,7 @@ export function PersonneMoraleQuiz({
               return (
                 <div key={product.id} className={`${styles.productPill} ${styles[`productPill_${product.tone}`]}`}>
                   <Icon className={styles.productPillIcon} aria-hidden="true" />
-                  <span>{product.shortLabel}</span>
+                  <span>{product.label}</span>
                 </div>
               );
             })}
@@ -498,12 +491,6 @@ export function PersonneMoraleQuiz({
               </div>
             </div>
           </div>
-
-          {showSourceNote && (
-            <p className={styles.sourceNote}>
-              Synthèse construite à partir des guides Ramify sur les CTO et contrats de capitalisation pour personne morale.
-            </p>
-          )}
         </aside>
 
         <div className={styles.quizPanel}>
@@ -613,8 +600,7 @@ export function PersonneMoraleQuiz({
                 {rankedResults.map(({ product, score }) => (
                   <div key={product.id} className={styles.scoreRow}>
                     <div className={styles.scoreLabel}>
-                      <span>{product.shortLabel}</span>
-                      <small>{product.label}</small>
+                      <span>{product.label}</span>
                     </div>
                     <div className={styles.scoreTrack} aria-hidden="true">
                       <span

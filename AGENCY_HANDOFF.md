@@ -64,8 +64,7 @@ Paramètres recommandés :
 
 - Sur-titre : `Quiz d'orientation`
 - Titre : `Quelle enveloppe choisir pour votre personne morale ?`
-- Description : `Répondez à quelques questions pour comparer CTO français, CTO luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.`
-- Afficher la note de source : `true`
+- Description : `Répondez à quelques questions pour comparer compte-titres français, compte-titres luxembourgeois, contrat de capitalisation français et contrat luxembourgeois.`
 - Afficher le CTA final : `true`
 - Texte CTA final : `Échanger avec un conseiller`
 
@@ -82,8 +81,8 @@ Seuils produit à respecter dans les contenus :
 
 - Contrat de capitalisation français : à partir de 100 000 €
 - Contrat de capitalisation luxembourgeois : à partir de 250 000 €
-- CTO français : à partir de 100 000 €
-- CTO luxembourgeois : à partir de 500 000 €
+- Compte-titres français : à partir de 100 000 €
+- Compte-titres luxembourgeois : à partir de 500 000 €
 
 ## 8) QA fonctionnelle
 
@@ -97,8 +96,8 @@ Seuils produit à respecter dans les contenus :
 
 ## 9) QA métier
 
-- CTO français favorisé par liquidité, frais bas, simplicité et cadre français.
-- CTO luxembourgeois favorisé par multi-devises, international, clean shares et Lombard.
+- Compte-titres français favorisé par liquidité, frais bas, simplicité et cadre français.
+- Compte-titres luxembourgeois favorisé par multi-devises, international, clean shares et Lombard.
 - Contrat de capitalisation français favorisé par société patrimoniale, fonds euros et fiscalité lissée.
 - Contrat luxembourgeois favorisé par montant important, horizon long, supports sophistiqués et protection luxembourgeoise.
 - Le résultat indique que le quiz ne remplace pas une analyse fiscale, juridique ou comptable.

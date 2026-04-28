@@ -32,7 +32,6 @@
   --ramify-grey-800: var(--color--grey800, #2f2e2c);
   --ramify-grey-900: var(--color--grey900, #1e1e1e);
   --ramify-green-200: var(--color--green200, #e2f0cf);
-  --ramify-green-700: var(--color--green700, #6a7851);
   color: var(--ramify-text-primary);
   font-family: var(--ramify-font-normal);
   font-weight: 300;
@@ -126,7 +125,7 @@
 }
 
 .productPill span {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   line-height: 1.2;
 }
 
@@ -180,13 +179,6 @@
   color: var(--ramify-grey-300);
   font-size: 0.88rem;
   margin-top: 4px;
-}
-
-.sourceNote {
-  color: var(--ramify-grey-400);
-  font-size: 0.78rem;
-  line-height: 1.55;
-  margin: 0;
 }
 
 .quizPanel {
@@ -587,7 +579,7 @@
   align-items: center;
   display: grid;
   gap: 12px;
-  grid-template-columns: minmax(130px, 0.52fr) minmax(120px, 1fr) 36px;
+  grid-template-columns: minmax(210px, 0.8fr) minmax(120px, 1fr) 36px;
   min-height: 44px;
 }
 
@@ -600,12 +592,6 @@
 .scoreLabel span {
   color: var(--ramify-grey-100);
   font-size: 0.92rem;
-}
-
-.scoreLabel small {
-  color: var(--ramify-grey-400);
-  font-size: 0.72rem;
-  line-height: 1.25;
 }
 
 .scoreTrack {
@@ -625,7 +611,7 @@
 }
 
 .scoreFill_international {
-  background: var(--ramify-green-700);
+  background: var(--ramify-gold-300);
 }
 
 .scoreFill_secure {
@@ -937,7 +923,7 @@
 
   .scoreRow {
     gap: 8px;
-    grid-template-columns: minmax(96px, 0.72fr) minmax(80px, 1fr) 28px;
+    grid-template-columns: minmax(150px, 0.9fr) minmax(80px, 1fr) 28px;
   }
 
   .resultFooter {

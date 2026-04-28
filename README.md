@@ -2,8 +2,8 @@
 
 Ce dossier contient le quiz Ramify pour orienter une personne morale vers l'une des quatre enveloppes commercialisées :
 
-- CTO français
-- CTO luxembourgeois
+- Compte-titres français
+- Compte-titres luxembourgeois
 - Contrat de capitalisation français
 - Contrat de capitalisation luxembourgeois
 
