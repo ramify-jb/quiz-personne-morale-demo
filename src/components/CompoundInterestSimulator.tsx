@@ -32,6 +32,12 @@ interface ProductProfile {
   facts: Array<{ label: string; value: string }>;
 }
 
+interface ProductResult {
+  product: ProductProfile;
+  score: number;
+  isEligible: boolean;
+}
+
 interface QuizAnswer {
   id: string;
   label: string;
@@ -150,6 +156,15 @@ const PRODUCT_PROFILES: ProductProfile[] = [
     ],
   },
 ];
+
+const ALL_PRODUCT_IDS: ProductId[] = ["cto_fr", "cto_lux", "cap_fr", "cap_lux"];
+
+const ELIGIBLE_PRODUCT_IDS_BY_AMOUNT: Record<string, ProductId[]> = {
+  "100_250": ["cto_fr", "cap_fr"],
+  "250_500": ["cto_fr", "cap_fr", "cap_lux"],
+  "500_1m": ALL_PRODUCT_IDS,
+  "1m_plus": ALL_PRODUCT_IDS,
+};
 
 const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
@@ -376,11 +391,17 @@ function getSelectedAnswers(answers: AnswersState) {
   }).filter(Boolean) as Array<{ question: QuizQuestion; answer: QuizAnswer }>;
 }
 
-function computeScores(answers: AnswersState) {
+function getEligibleProductIds(answers: AnswersState) {
+  const amountAnswerId = answers.amount;
+  return new Set(ELIGIBLE_PRODUCT_IDS_BY_AMOUNT[amountAnswerId ?? ""] ?? ALL_PRODUCT_IDS);
+}
+
+function computeScores(answers: AnswersState): ProductResult[] {
   const scores = PRODUCT_PROFILES.reduce(
     (accumulator, product) => ({ ...accumulator, [product.id]: 0 }),
     {} as Record<ProductId, number>,
   );
+  const eligibleProductIds = getEligibleProductIds(answers);
 
   for (const { answer } of getSelectedAnswers(answers)) {
     for (const [productId, score] of Object.entries(answer.scores) as Array<[ProductId, number]>) {
@@ -388,10 +409,17 @@ function computeScores(answers: AnswersState) {
     }
   }
 
-  return PRODUCT_PROFILES.map((product) => ({
-    product,
-    score: scores[product.id],
-  })).sort((a, b) => b.score - a.score);
+  return PRODUCT_PROFILES.map((product) => {
+    const isEligible = eligibleProductIds.has(product.id);
+    return {
+      product,
+      score: isEligible ? scores[product.id] : 0,
+      isEligible,
+    };
+  }).sort((a, b) => {
+    if (a.isEligible !== b.isEligible) return a.isEligible ? -1 : 1;
+    return b.score - a.score;
+  });
 }
 
 function getProgressLabel(answeredCount: number) {
@@ -594,18 +622,19 @@ export function PersonneMoraleQuiz({
 
               <div className={styles.scoreBoard}>
                 <h4 className={styles.detailTitle}>Comparaison des 4 enveloppes</h4>
-                {rankedResults.map(({ product, score }) => (
-                  <div key={product.id} className={styles.scoreRow}>
+                {rankedResults.map(({ product, score, isEligible }) => (
+                  <div key={product.id} className={`${styles.scoreRow} ${!isEligible ? styles.scoreRowUnavailable : ""}`}>
                     <div className={styles.scoreLabel}>
                       <span>{product.label}</span>
+                      {!isEligible && <small>Ticket minimum supérieur au montant indiqué</small>}
                     </div>
                     <div className={styles.scoreTrack} aria-hidden="true">
                       <span
                         className={`${styles.scoreFill} ${styles[`scoreFill_${product.tone}`]}`}
-                        style={{ width: `${getScorePercent(score, topScore)}%` }}
+                        style={{ width: isEligible ? `${getScorePercent(score, topScore)}%` : "0%" }}
                       />
                     </div>
-                    <strong>{Math.max(0, score)}</strong>
+                    <strong>{isEligible ? Math.max(0, score) : "—"}</strong>
                   </div>
                 ))}
               </div>
