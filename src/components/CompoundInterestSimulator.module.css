@@ -481,7 +481,7 @@
 }
 
 .resultProductCard_international {
-  background: var(--ramify-grey-200);
+  background: var(--ramify-grey-300);
 }
 
 .resultProductCard_secure {
@@ -620,7 +620,7 @@
 }
 
 .scoreFill_international {
-  background: var(--ramify-gold-300);
+  background: var(--ramify-grey-300);
 }
 
 .scoreFill_secure {
