@@ -125,7 +125,7 @@ assert_live_demo_html() {
   local expected_css_bundle="$4"
   local html
 
-  html="$(curl -Lks "${url}?v=${expected_commit}")"
+  html="$(curl -fsSL "${url}?v=${expected_commit}")"
 
   if [[ "$html" != *"src=\"${PUBLIC_DEMO_BASE_PATH}assets/${expected_js_bundle}\""* ]]; then
     echo "Published HTML does not reference the expected JS bundle (${expected_js_bundle})." >&2
