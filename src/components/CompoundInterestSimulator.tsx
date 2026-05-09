@@ -431,6 +431,18 @@ function getScorePercent(score: number, topScore: number) {
   return Math.max(8, Math.round((Math.max(0, score) / topScore) * 100));
 }
 
+function getCompatibilityLabel(score: number, topScore: number, isEligible: boolean) {
+  if (!isEligible) return "Non accessible";
+
+  const scorePercent = getScorePercent(score, topScore);
+
+  if (scorePercent >= 85) return "Fort";
+  if (scorePercent >= 60) return "Moyen";
+  if (scorePercent >= 35) return "Modéré";
+
+  return "Faible";
+}
+
 function buildRecommendationTitle(topProduct: ProductProfile, secondProduct: ProductProfile, topScore: number, secondScore: number) {
   if (topScore - secondScore <= 2) {
     return `${topProduct.label} à comparer avec ${secondProduct.label}`;
@@ -480,7 +492,7 @@ export function PersonneMoraleQuiz({
 
   return (
     <section className={styles.simulatorContainer} aria-label="Quiz personne morale Ramify">
-      <div className={styles.shell}>
+      <div className={`${styles.shell} ${isComplete ? styles.shellComplete : ""}`}>
         <aside className={styles.introPanel}>
           <div>
             <p className={styles.eyebrow}>{eyebrow}</p>
@@ -621,7 +633,13 @@ export function PersonneMoraleQuiz({
               </div>
 
               <div className={styles.scoreBoard}>
-                <h4 className={styles.detailTitle}>Comparaison des 4 enveloppes</h4>
+                <h4 className={styles.detailTitle}>Compatibilité avec vos réponses</h4>
+                {topResult.score - secondResult.score <= 2 && (
+                  <p className={styles.scoreBoardTie}>
+                    Deux enveloppes ressortent à un niveau proche : l'arbitrage dépend surtout de la liquidité, de la fiscalité et du
+                    niveau de structuration souhaité.
+                  </p>
+                )}
                 {rankedResults.map(({ product, score, isEligible }) => (
                   <div key={product.id} className={`${styles.scoreRow} ${!isEligible ? styles.scoreRowUnavailable : ""}`}>
                     <div className={styles.scoreLabel}>
@@ -634,7 +652,7 @@ export function PersonneMoraleQuiz({
                         style={{ width: isEligible ? `${getScorePercent(score, topScore)}%` : "0%" }}
                       />
                     </div>
-                    <strong>{isEligible ? Math.max(0, score) : "—"}</strong>
+                    <strong>{getCompatibilityLabel(score, topScore, isEligible)}</strong>
                   </div>
                 ))}
               </div>
